@@ -1,0 +1,97 @@
+@import './functions';
+@import './variables';
+
+@mixin shadow-light {
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.02);
+}
+@mixin shadow-md {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+@mixin slide_menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 9999999;
+  left: 30%;
+  right: 0;
+  padding: 4rem 10%;
+  transform: translateX(150%);
+  background: rgba(0, 0, 0, 0.9) !important;
+  overflow: auto;
+  transition: transform 0.5s ease-in-out;
+  ul {
+    display: block !important;
+  }
+  li {
+    list-style: none;
+    cursor: pointer;
+    display: block;
+    margin: 2rem 0 1.2rem 0 !important;
+    a {
+      color: #fff !important;
+    }
+  }
+}
+@mixin absolute-position($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top !important;
+  right: $right !important;
+  bottom: $bottom;
+  left: $left !important;
+}
+@mixin flex-x-between {
+  @include flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin flex-y-between {
+  @include flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin flex-x-center {
+  @include flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin image-size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex {
+  display: flex !important;
+}
+@mixin grid {
+  display: block !important;
+}
+
+@mixin row($breakpoint) {
+  @include flex;
+  @media screen and #{inspect(breakpoint($breakpoint))} {
+    @include grid;
+  }
+}
+
+@mixin responsive($property, $value, $breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{inspect(breakpoint($breakpoint))} {
+      #{$property}: $value;
+    }
+  } @else {
+    @warn "No value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin media($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{inspect(breakpoint($breakpoint))} {
+      @content;
+    }
+  } @else {
+    @warn "No value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}

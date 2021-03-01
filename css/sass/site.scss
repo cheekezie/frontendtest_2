@@ -1,0 +1,124 @@
+/********************/
+/*** SCSS PARTIALS ***/
+/********************/
+@import './mixin';
+@import './functions';
+@import './typography';
+@import './elements';
+@import './color';
+@import './icon';
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+.cursor {
+  cursor: pointer;
+}
+
+//HEADER SECTION
+header {
+  padding: 1.2rem 10% 0.8rem 10%;
+  @include flex-x-between;
+  img {
+    @include image-size(8rem, auto);
+  }
+  a,
+  a:link,
+  a:active {
+    text-transform: capitalize;
+    color: color(light);
+    padding: 0.1rem 0.75rem;
+    border-radius: 7px;
+    text-decoration: none;
+    &.active {
+      background: color(grey-300);
+      border: 2px solid darken(color(grey-300), 7);
+    }
+  }
+  .menu-toggle {
+    display: none;
+    @include responsive(display, block, ipad);
+  }
+  .mobile-menu {
+    .sidemenu_toggle {
+      display: none;
+    }
+    @include media(ipad) {
+      .sidemenu-toggle {
+        display: block;
+        @include absolute_position(1rem, 20%, '', '');
+      }
+      @include slide_menu;
+    }
+  }
+}
+
+.motion-in {
+  transform: translateX(0) !important;
+}
+
+//  BANNER SECTION
+.banner {
+  padding: 2rem 10% 0 10%;
+  .form-area {
+    padding-right: 10%;
+    @include responsive(padding-right, 0, ipad);
+  }
+  .text-area {
+    padding-top: 4rem;
+  }
+  form {
+    border-radius: 3px;
+    padding: 3rem 4rem 6rem 4rem;
+    @include responsive(padding, 3rem 2rem 6rem 2rem, ipad);
+  }
+}
+
+// FEATURES
+.features {
+  padding: 5rem 10% 2rem 10%;
+  @include row(tablet);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .feature-item {
+    width: 30%;
+    @include media(ipad) {
+      width: 47%;
+      margin-bottom: 4rem;
+    }
+    @include responsive(width, 100%, tablet);
+  }
+  .glyph {
+    @include flex-x-center;
+    @include image-size(100px, 100px);
+    border-radius: 50%;
+    border: 3px solid color(grey-100);
+    color: color(grey-100);
+    font-size: 45px;
+  }
+}
+
+// FOOTER SECTION
+footer {
+  padding: 0 10% 2rem 10%;
+  .glyph {
+    @include flex-x-center;
+    @include image-size(30px, 30px);
+    border-radius: 50%;
+    font-size: 16px;
+  }
+}

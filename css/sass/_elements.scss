@@ -1,0 +1,66 @@
+@import './functions';
+@import './mixin';
+
+// Buttons
+button,
+.button {
+  padding: 0.37rem 1rem;
+  box-shadow: none;
+  border: none;
+  &.padding-lg {
+    padding: 0.5rem 2rem;
+  }
+  &.padding-sm {
+    padding: 0.3rem 1rem;
+  }
+  &.rounded {
+    border-radius: 20px !important;
+  }
+  &.rounded-sm {
+    border-radius: 5px !important;
+  }
+  &.border-default {
+    border-top: 2px solid lighten(color(blue-1), 7);
+    border-left: 2px solid color(blue-2);
+    border-right: 2px solid color(blue-2);
+    border-bottom: 2px solid lighten(color(blue-1), 7);
+  }
+  &.border-light {
+    border-top: 1px solid lighten(color(blue-1), 1);
+  }
+}
+
+// Input
+input[type='text'],
+input[type='email'],
+textarea {
+  height: calc(3em + 0.8rem + 1px) !important;
+  padding: 1.5rem 1.2rem !important;
+  outline: none;
+  outline-width: 0;
+  color: darken(color(grey-300), 9);
+  &::placeholder {
+    color: darken(color(grey-300), 9);
+  }
+  &:focus,
+  &:active {
+    outline: none;
+    outline-width: 0;
+  }
+  &.border-none {
+    border: none;
+  }
+  &.border-grey {
+    border: 1px solid color(grey-400);
+  }
+  &.border-default {
+    border-top: 2px solid color(grey-400);
+    border-left: 2px solid color(grey-400);
+    border-right: 2px solid color(grey-200);
+    border-bottom: 2px solid color(grey-200);
+  }
+  //DISABLE AUTO ZOOM IN
+  @include media(tablet) {
+    font-size: 16px !important;
+  }
+}
